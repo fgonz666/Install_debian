@@ -25,7 +25,7 @@ impression fidèle à l'esprit et la graphie de cette production. Le
 document est initialement écrit en langage `Markdown` avec une 
 exportation en _pdf_ via des feuilles de styles pour \LaTeX\ qui est 
 un langage que j'aime énormément. Actuellement ce document contient
-55 pages format A4.
+57 pages format A4.
 
 ## Récupération du fichier **ISO**.
 
@@ -120,12 +120,16 @@ francophone, je choisis évidemment la France ...
 ... il faut bien sûr fixer ensuite les locales, c'est-à-dire les 
 paramètres régionaux du système futur.
 
+![](img007.png)
+
 Le système Linux admet plusieurs paramètres régionaux ce qui peut 
 avoir son utilité dans certaines situations, ici le système qui est 
 sur le point d'être installé n'aura pas besoin de ces ajouts aussi 
 aucune case n'est cochée dans la capture suivante.
 
-![](img007.png)
+![](img008.png)
+
+## Les adaptations aux personnes handicapées
 
 Le système GNU/Linux _Debian_ se voulant le plus ouvert et large, le 
 support des dispositifs braille est inclus dès cette étape. Si aucun 
@@ -133,41 +137,73 @@ dispositif de la sorte n'est détecté -- ce qui est le cas dans mes
 configurations -- alors l'appui sur continuer ou sur entrée ne fait 
 que passer à l'étape suivante ...
 
-![](img008.png)
+![](img009.png)
 
 ... celle de la configuration de la synthèse vocale. Également absent 
 de mes ordinateurs, la validation ou la continuation aura un effet 
 similaire à savoir le passage à l'étape ultérieure.
 
-## Les adaptations aux personnes handicapées
-
-![](img009.png)
-
 ![](img010.png)
 
 ## La configuration du clavier
 
+Une fois tous ces paramètres fixés restent les paramètres du clavier. 
+
 ![](img011.png)
+
+Clavier qui est automatiquement sélectionné en Français vu les locales 
+paramétrées précédemment.
 
 ![](img012.png)
 
 ## Vérification du support d'installation
 
+Avant de poursuivre, l'installateur se doit de vérifier l'intégrité 
+du contenu du support.
+
 ![](img013.png)
+
+Les modules obligatoires pour poursuivre sont automatiquement cochés. 
 
 ![](img014.png)
 
+Si tout va bien, ce magnifique message apparaîtra.
+
 ![](img015.png)
 
-## Chargement des outils nécessaires à l'installation
+Tout est donc prêt pour continuer.
+
+## Chargement des outils supplémentaires à l'installation
+
+Comme le montre la capture qui suit la ligne suivante sera 
+sélectionnée pour charger les composants supplémentaires. Le message 
+indique que lors d'une détection interne si des modules s'avèrent 
+nécessaires ils seront automatiquement chargés. La liste proposée 
+ne contient que les composants que le système ne détecte pas mais 
+que l'utilisateur _sait_ être importants pour sa personnalisation.
 
 ![](img016.png)
 
+Avant de poursuivre il peut être nécessaire d'insérer des modules 
+autres que le système n'estime pas obligatoire. Par exemple si on 
+décide qu'on va utiliser un mirroir d'installation local (donc non 
+proposé : choose-mirror), ou bien si un des disques est chiffré et 
+qu'on souhaite le conserver (crypto-dm-modules), ou encore si la 
+machine a très peu de mémoire vive (lowmem) voir si on souhaite 
+installer le minimum du minimum pour finir l'installation dans une 
+seconde étape à distance (network-console) ...
+
 ![](img017.png)
+
+Après avoir coché ou non certaines cases et aussi coché le bouton 
+\[Continuer\] le chargement automatique des modules cochés 
 
 ![](img018.png)
 
 ## La partie réseau
+
+Ici arrive la configuration cruciale pour la suite même si elle ne 
+représente pas la partie la plus importante de cette production.
 
 ![](img019.png)
 
@@ -422,8 +458,6 @@ de la machine, cette étape peut être plus ou moins longue.
 
 ![](img135.png)
 
-
-
 ## L'installation du chargeur de démarrage
 
 C'est à ce moment de l'installation que la coupure de courant a eu 
@@ -518,6 +552,54 @@ et qui je l'espère vous ouvrira de nouvelles aventures dans le monde
 du libre et de Linux.
 
 Amusez-vous bien !
+
+## Le démarrage qui suit
+
+Les pages qui suivent vont montrer quelques captures d'écran du 
+résultat obtenu. Comme l'installation est relativement minimaliste 
+aussi GRUB est-il en version textuelle et non graphique. Il reste 
+évidemment paramétrable en allant chercher les fichiers idoine.
+
+L'écran devrait ressembler à celui qui suit (j'ai inversé les 
+couleurs de la zone autour du rectangle bleu central)
+
+![](img149.png)
+
+Très rapidement après la disparition de l'écran précédent et vu que 
+le disque dur est chiffré, le mot de passe est à saisir (la capture 
+d'écran est en couleurs inversées pour économiser l'encre). Il y a 
+par défaut 3 tentatives autorisées avant que le système ralentisse 
+l'accès.
+
+![](img150.png)
+
+Plusieurs lignes apparaîtront avec le démarrage de plusieurs services, 
+tant que des OK, ou de INFO apparaissent tout va bien, attention dans 
+le cas des WARN (orange) et surtout s'il y a des FAILED (rouge) 
+visibles il faudra agir.
+
+La capture d'écran suivante est en couleurs inversées aussi.
+
+![](img151.png)
+
+Arrivera alors l'écran d'identification et d'authentification le plus 
+simple possible.
+
+![](img152.png)
+
+Voici le bureau obtenu ensuite avec l'explorateur de fichiers à gauche 
+et un terminal à droite.
+
+![](img153.png)
+
+Le bureau vide de LXDE sur debian 11.2 :
+
+![](img154.png)
+
+Pour finir : les messages d'extinction en couleurs inversées afin 
+d'économiser aussi l'encre..
+
+![](img155.png)
 
 ## Quelques informations légales
 
