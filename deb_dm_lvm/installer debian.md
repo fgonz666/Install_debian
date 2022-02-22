@@ -1,6 +1,18 @@
-# Installation d'une distribution _debian_ sur ordinateur BIOS
+\title{Installation d'une distribution \emph{debian} sur ordinateur BIOS}
+\author{F.S.G.}
+\begin{titlepage}
+	\maketitle
+\end{titlepage}
 
-## Pourquoi ?
+\tableofcontents
+
+<!--
+Tout le code précédent est interprété pour la compilation LaTeX -> pdf
+-->
+
+# Avant de commencer
+
+## Pourquoi ce document ?
 
 Une expérience récente a montré que certains utilisateurs sont à la 
 recherche d'une nouvelle distribution afin d'avancer dans les 
@@ -25,9 +37,11 @@ impression fidèle à l'esprit et la graphie de cette production. Le
 document est initialement écrit en langage `Markdown` avec une 
 exportation en _pdf_ via des feuilles de styles pour \LaTeX\ qui est 
 un langage que j'aime énormément. Actuellement ce document contient
-57 pages format A4.
+86 pages format A4.
 
-## Récupération du fichier **ISO**.
+## Vérifications préalables
+
+### Récupération du fichier **ISO**.
 
 Évidemment, l'**ISO**[^iso] est à récupérer auparavant sur le site de 
 debian : <https://www.debian.org>, mais prenez garde : le projet 
@@ -51,13 +65,16 @@ périphériques -- et plus généralement les pilotew wifi ou certains
 pilotes graphiques -- seront reconnus à l'installation et pourront 
 permettre de la mener à bout.
 
-##### Petit conseil
+**Petit conseil.** 
 Même lorsque j'installe une debian j'aime prévoir la pire des 
 situations et c'est pour cela que j'ai toujours un câble éthernet de 
 longueur plus que suffisante afin de ne pas avoir à utiliser la 
 version non-officielle avec les pilotes non-libres.
 
-## Gravure et démarrage de l'iso
+### Gravure de l'iso
+
+
+# Démarrage sur le futur ordinateur installé
 
 Une fois le fichier _iso_ gravé sur le support et l'ordinateur 
 démarré sur ce même support un premier écran s'affichera, celui de 
@@ -103,7 +120,7 @@ La première partie sera évidemment de choisir la langue utilisée lors
 de l'installation. La langue anglaise est peut-être votre tasse de 
 thé mais pas la mienne aussi ...
 
-## La langue et les localisations
+# La langue et les localisations
 
 ![](img004.png)
 
@@ -129,7 +146,7 @@ aucune case n'est cochée dans la capture suivante.
 
 ![](img008.png)
 
-## Les adaptations aux personnes handicapées
+# Les adaptations aux personnes handicapées
 
 Le système GNU/Linux _Debian_ se voulant le plus ouvert et large, le 
 support des dispositifs braille est inclus dès cette étape. Si aucun 
@@ -145,7 +162,7 @@ similaire à savoir le passage à l'étape ultérieure.
 
 ![](img010.png)
 
-## La configuration du clavier
+# La configuration du clavier
 
 Une fois tous ces paramètres fixés restent les paramètres du clavier. 
 
@@ -156,7 +173,7 @@ paramétrées précédemment.
 
 ![](img012.png)
 
-## Vérification du support d'installation
+# Vérification du support d'installation
 
 Avant de poursuivre, l'installateur se doit de vérifier l'intégrité 
 du contenu du support.
@@ -173,7 +190,7 @@ Si tout va bien, ce magnifique message apparaîtra.
 
 Tout est donc prêt pour continuer.
 
-## Chargement des outils supplémentaires à l'installation
+# Chargement des outils supplémentaires à l'installation
 
 Comme le montre la capture qui suit la ligne suivante sera 
 sélectionnée pour charger les composants supplémentaires. Le message 
@@ -200,7 +217,7 @@ Après avoir coché ou non certaines cases et aussi coché le bouton
 
 ![](img018.png)
 
-## La partie réseau
+# La partie réseau
 
 Ici arrive la configuration cruciale pour la suite même si elle ne 
 représente pas la partie la plus importante de cette production.
@@ -221,7 +238,7 @@ représente pas la partie la plus importante de cette production.
 
 ![](img026.png)
 
-## Le ou les utilisateurs
+# Le ou les utilisateurs
 
 ![](img027.png)
 
@@ -237,17 +254,52 @@ représente pas la partie la plus importante de cette production.
 
 ![](img033.png)
 
-## Les paramètres temporels
+# Réglage de l'horloge et du fuseau horaire.
+
+Cette partie va s'avérer importante dans certains cas, pas tant pour l'utilisateur 
+d'un poste de travail classique -- quoi que cela puisse avoir son importance -- 
+mais il ne faut pas oublier que _Debian_ reste dans sa conception et son ADN une 
+distribution orientée serveurs.
+
+Or, afin que tous les serveurs partout dans le monde soient réglés comme il faut 
+les machines fonctionnant sous Linux seul ont comme habitude de régler l'horloge 
+matérielle de l'ordinateur sur le temps universel GMT et d'appliquer un décalage 
+dû au fuseau horaire.
 
 ![](img034.png)
 
+Une machine fonctionnant sous windows voit son heure matérielle dans le même 
+fuseau horaire que celle du système, pas sous Linux (et sous macOS également).
+
+D'ailleurs Microsoft (Windows) utilise lui aussi un service de temps pour la même 
+chose mais il est rarement actif par défaut (de mémoire).
+
+Afin d'assurer le bon réglage des heures les unes par rapport aux autres il est 
+demandé s'il faut utiliser le service NTP[^ntp] pour synchroniser l'horloge du 
+système.
+
 ![](img035.png)
+
+Par défaut le choix étant "oui" la fenêtre suivante est proposée, elle utilise le 
+serveur faisant tourner le service (côté serveur) pour effectuer les recalages.
+
+Sauf si vous connaissez l'adresse exacte d'un serveur de temps, ne pas toucher à ce 
+paramètre est judicieux.
 
 ![](img036.png)
 
+Si la connexion s'établit vers le dit serveur, le fuseau horaire le plus proche 
+entre vos réglages linguistiques, l'heure système et l'horloge matérielle sera 
+proposé en plus du temps universel.
+
 ![](img037.png)
 
-## Préparation du support
+Ces réglages sont importants surtout pour la validité des certificats et des 
+signatures cryptographiques utilisées par certains services et ou logiciels. Au 
+moment de la fin de validité d'un tel document ou au début de la validité d'un 
+autre, si l'horloge est mal réglée c'est
+
+# Préparation du support
 
 ![](img038.png)
 
@@ -395,7 +447,7 @@ représente pas la partie la plus importante de cette production.
 
 ![](img110.png)
 
-## Installation du système de base sur la cible
+# Installation du système de base sur la cible
 
 ![](img111.png)
 
@@ -405,7 +457,7 @@ représente pas la partie la plus importante de cette production.
 
 ![](img114.png)
 
-## Configuration de l'outil de gestion des paquets
+# Configuration de l'outil de gestion des paquets
 
 ![](img115.png)
 
@@ -433,7 +485,7 @@ représente pas la partie la plus importante de cette production.
 
 ![](img127.png)
 
-## Installation des logiciels initiaux
+# Installation des logiciels initiaux
 
 ![](img128.png)
 
@@ -458,7 +510,7 @@ de la machine, cette étape peut être plus ou moins longue.
 
 ![](img135.png)
 
-## L'installation du chargeur de démarrage
+# L'installation du chargeur de démarrage
 
 C'est à ce moment de l'installation que la coupure de courant a eu 
 lieu par manque d'anticipation de ma part et un chargeur non branché 
@@ -513,13 +565,36 @@ configuration de GRUB.
 
 Ces deux phases sont totalement automatiques et une fois fini c'est la fin de l'installation qui s'annonce.
 
-## La phase finale de l'installation
+À ce stade la machine devient "démarrable" puisque GRUB est installé mais le noyau 
+installé n'est pas optimisé pour l'ordinateur, cette adaptation sera faite lors de 
+la phase finale qui suit.
+
+# La phase finale de l'installation
+
+On arrive à la fin du spectacle. Il ne reste plus qu'à paramétrer les utilisateurs 
+et recréer une image propre pour le démarrage.
+
+Le grand menu d'accueil nous indique d'ailleurs qu'on arrive à " Terminer 
+l'installation " c'est tout dire. Et on valide !
 
 ![](img143.png)
 
+Tous les paramètres saisis tout à l'heure sont mis en place maintenant : 
+création des utilisateurs avec inscription de l'utilisateur standard dans 
+le groupe _sudo_ si le compte **root** n'est pas activé.
+
 ![](img144.png)
 
+Vient ensuite l'exécution du script `hw-detect` dont le nom est suffisamment 
+clair pour supposer qu'il est là pour détecter le matériel spécifiquement. Je 
+pense qu'il sert dans l'étape de compilation de l'initramfs à venir plus loin.
+
 ![](img145.png)
+
+Puis une fois ceci effectué l'installateur demande si l'horloge matérielle 
+est déjà en UTC (par exemple si l'ordinateur utilisait déjà un système 
+Linux ou UNIX) ou pas afin de correctement synchroniser l'heure système 
+et l'heure matérielle.
 
 ![](img146.png)
 
@@ -540,6 +615,9 @@ Si les options diffèrent un peu -- et sûrement -- lors de
 l'installation, c'est quand même cet outil qui es exécuté à ce 
 moment de l'installateur.
 
+C'est dans cette étape que sont à mon avis utilisées les informations 
+récupérées par le script `hw-detect` aux étapes précédentes.
+
 ![](img147.png)
 
 Pour finir enfin, la dernière étape vous signaler la démarche à suivre 
@@ -553,7 +631,7 @@ du libre et de Linux.
 
 Amusez-vous bien !
 
-## Le démarrage qui suit
+# Le démarrage qui suit
 
 Les pages qui suivent vont montrer quelques captures d'écran du 
 résultat obtenu. Comme l'installation est relativement minimaliste 
@@ -601,7 +679,7 @@ d'économiser aussi l'encre..
 
 ![](img155.png)
 
-## Quelques informations légales
+# Quelques informations légales
 
 Toute cette installation a été réalisée avec l'outil virtualbox 
 présent dans la distribution Linux Ubuntu 22.04 en pré-version (car 
@@ -639,3 +717,5 @@ endroit.
 début qui est utilisée pour indiquer au système où se trouve le 
 système d'exploitation. Ceci est caractéristique des systèmes BIOS. Un 
 autre système existe dans les machines en uEFI.
+
+[^ntp]: Network Time Protocole

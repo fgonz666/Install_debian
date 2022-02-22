@@ -1,0 +1,15 @@
+%\usepackage[margin=30mm, a4pape]{geometry}
+\usepackage[fontsize=11pt]{fontsize}
+\usepackage{palatino}
+\usepackage[french]{babel}
+\usepackage{xcolor}
+\usepackage{hyperref}
+	\hypersetup{
+		colorlinks=true,
+		urlcolor=blue,
+		linkcolor=blue!50!red
+	}
+	\urlstyle{same}
+\setlength{\parskip}{0.5em}
+\renewcommand{\baselinestretch}{}
+\usepackage[Lenny]{fncychap}
