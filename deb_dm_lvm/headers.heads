@@ -10,6 +10,7 @@
 		linkcolor=blue!50!red
 	}
 	\urlstyle{same}
+\usepackage{float}
 \setlength{\parskip}{0.5em}
 \renewcommand{\baselinestretch}{}
 \usepackage[Lenny]{fncychap}

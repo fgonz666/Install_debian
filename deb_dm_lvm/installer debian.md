@@ -37,7 +37,15 @@ impression fidèle à l'esprit et la graphie de cette production. Le
 document est initialement écrit en langage `Markdown` avec une 
 exportation en _pdf_ via des feuilles de styles pour \LaTeX\ qui est 
 un langage que j'aime énormément. Actuellement ce document contient
-86 pages format A4.
+99 pages format A4.
+
+Cette version A4-_pdf_ est volontairement créée avec de grandes 
+marges afin de laisser l'espace autour du texte pour vos propres 
+ajouts, vos correctifs ou autres notes personnelles, car autant 
+j'aime les livres pour ce qu'ils ont en eux et ce qu'ils sont comme 
+objet artistique intrinsèquement, autant j'apprécie aussi la 
+possibilité offerte de pouvoir se les approprier par l'ajout de 
+réflexions ou d'observations personnelles aux endroits nécessaires.
 
 ## Vérifications préalables
 
@@ -73,14 +81,38 @@ version non-officielle avec les pilotes non-libres.
 
 ### Gravure de l'iso
 
+La gravure de l'ISO ne devrait pas poser de problèmes en fonction du système d'exploitation que vous avez.
+
+**Les utilisateurs et utilisatrices de MacOS.** Vous disposez dans les utilitaires (CTRL+u) d'un outil de gravure sur support d'un fichier ISO.
+
+**Pour les utilisateurs et utilisatrices de Windows.** Il me semble que l'utilitaire "rufus" disponible : [ici](https://rufus.ie/fr/ "Rufus
+ -- Créez facilement des clés USB démarrables") permet de créer facilement des clés USB démarrables.
+
+**Pour les utilisateurs et utilisatrices de Linux et \*BSD.** L'outil intégré `dd` permet de graver facilement une image iso sur un support. 
+Génériquement :
+
+```bash
+sudo dd status=progress if=/chemin/nom_du_fichier.iso of=/dev/peripherique
+```
+et par exemple si l'iso `debian-bidule.iso` se trouve dans le dossier `Téléchargements` et la clé usb à graver est situé dans `/dev/sdc` et que je suis dans mon dossier d'utilisateur alors la commande précédente devient :
+```bash
+sudo dd status=progess if=Téléchargements/debian-bidule.iso of=/dev/sdc
+```
+Suite à tout cela la clé est prête pour un démarrage.
+
+### Petite recherche sur Internet
+
+Évidemment pour de multiples raisons les ordinateurs ne démarrent pas sur clés USB mais directement sur le disque interne, aussi un petit tour sur internet avec le nom du modèle, de la marque et parfois aussi de la série vous permettra de trouver la *touche magique* qui orientera le démarrage vers le support USB et non sur le disque interne.
+
+Extinction, branchement ... et c'est parti !
 
 # Démarrage sur le futur ordinateur installé
 
+![Le premier écran de l'installateur](img001.png "Le premier écran de l'installateur")
+
 Une fois le fichier _iso_ gravé sur le support et l'ordinateur 
 démarré sur ce même support un premier écran s'affichera, celui de 
-la capture qui suit.
-
-![](img001.png)
+la capture précédente.
 
 Comme vous le voyez, les images étant grandes et ne voulant pas 
 surcharger inutilement tant la connexion internet si, comme je le 
@@ -94,7 +126,7 @@ Je n'aime pas utiliser l'installation basique qu'elle soit textuelle
 (Install) ou qu'elle soit graphique (Graphical install) aussi je 
 passe toujours par l'option (Advanced options).
 
-![](img002.png)
+![Sélection des options avancées.](img002.png "Sélection des options avancées.")
 
 Une fois l'option avancée choisie, pour les besoins de cette 
 installation j'ai opté exceptionnellement pour pour l'installation en 
@@ -106,7 +138,7 @@ les dernières captures d'écran seront différentes de celles du début.
 Après quelques secondes une fois le choix effectué l'écran de la 
 capture suivant apparaît.
 
-![](img003.png)
+![Le sous-menu d'options avancées.](img003.png "Le sous-menu d'options avancées.")
 
 Cette capture nous montre la voie à suivre et les différentes étapes 
 qui seront parcourrues pendant l'installation. Pour choisir un des 
@@ -122,29 +154,42 @@ thé mais pas la mienne aussi ...
 
 # La langue et les localisations
 
-![](img004.png)
+Mais commençons par le commencement. *Debian* gère de nombreuses 
+langues officielles et régionales, aussi afin de pouvoir communiquer 
+avec nous, le programme d'installation nous demande d'effectuer une 
+sélection linguistique.
 
-... je préfère basculer vers la langue française.
+![Menu principal : choix de la langue.](img004.png "Menu principal : choix de la langue.")
 
-![](img005.png)
+Même si j'aime bien la langue ce *Shakespear* et que je suis un 
+incoditionnel *amante* de celle de *Cervantes* ... je préfère 
+basculer vers la langue française et ainsi me faire plaisir, 
+*Molière* ou *Racine* et tous les autres auteurs du passé ne m'en 
+voudront pas de ne pas les citer tous et toutes.
+
+![Le Français !!!](img005.png "Le Français !!!")
 
 La langue d'installation étant fixée, la suite consiste à choisir la 
 localisation géographique, parmi les différents pays de langue 
 francophone, je choisis évidemment la France ...
 
-![](img006.png)
+![La France qu'on vous dit !](img006.png "La France qu'on vous dit !")
 
 ... il faut bien sûr fixer ensuite les locales, c'est-à-dire les 
 paramètres régionaux du système futur.
 
-![](img007.png)
+![Choix de la locale du futur système.](img007.png "Choix de la locale du futur système.")
 
 Le système Linux admet plusieurs paramètres régionaux ce qui peut 
 avoir son utilité dans certaines situations, ici le système qui est 
 sur le point d'être installé n'aura pas besoin de ces ajouts aussi 
 aucune case n'est cochée dans la capture suivante.
 
-![](img008.png)
+![D'autres locales disponibles.](img008.png "D'autres locales disponibles.")
+
+Arrivé(e) à ce stade la langue, le pays et la langue de l'interface 
+est déterminée et fixée pour le reste de l'installation tout comme 
+pour le futur système opératif.
 
 # Les adaptations aux personnes handicapées
 
@@ -154,52 +199,62 @@ dispositif de la sorte n'est détecté -- ce qui est le cas dans mes
 configurations -- alors l'appui sur continuer ou sur entrée ne fait 
 que passer à l'étape suivante ...
 
-![](img009.png)
+![Vérification de la présence d'un terminal braille.](img009.png "Vérification de la présence d'un terminal braille.")
 
 ... celle de la configuration de la synthèse vocale. Également absent 
 de mes ordinateurs, la validation ou la continuation aura un effet 
 similaire à savoir le passage à l'étape ultérieure.
 
-![](img010.png)
+![Mise en place d'une synthèse vocale... peut-être.](img010.png "Mise en place d'une synthèse vocale... peut-être.")
+
+Je pense que comme aucun dispositif de la sorte n'est présent sur 
+mon système, aucune assistance vocale à l'installation n'est alors 
+proposée dans la seconde captures, c'est pour cela que le clic sur 
+le bouton "Continuer" ne provoque rien d'autre que le passage à 
+l'étape ultérieure.
 
 # La configuration du clavier
 
 Une fois tous ces paramètres fixés restent les paramètres du clavier. 
 
-![](img011.png)
+![Menu principal : Configuration du clavier.](img011.png "Menu principal : Configuration du clavier.")
 
 Clavier qui est automatiquement sélectionné en Français vu les locales 
 paramétrées précédemment.
 
-![](img012.png)
+![Choix de la langue du clavier pour l'installation et pour le système cible.](img012.png "Choix de la langue du clavier pour l'installation et pour le système cible.")
 
 # Vérification du support d'installation
 
 Avant de poursuivre, l'installateur se doit de vérifier l'intégrité 
-du contenu du support.
+du contenu du support. Un seul paquet impropre et tôt ou tard lors 
+de l'installation, une erreur critique se manifestera et gèlera 
+aussitôt la mise en place du système.
 
-![](img013.png)
+![Menu principal : Détection et montage du support d'installation.](img013.png "Menu principal : Détection et montage du support d'installation.")
 
 Les modules obligatoires pour poursuivre sont automatiquement cochés. 
 
-![](img014.png)
+![Chargement automatique du support de l'USB pour la suite de l'installation.](img014.png "Chargement automatique du support de l'USB pour la suite de l'installation.")
 
 Si tout va bien, ce magnifique message apparaîtra.
 
-![](img015.png)
+![Le support est reconnu, accepté et intègre.](img015.png "Le support est reconnu, accepté et intègre.")
 
 Tout est donc prêt pour continuer.
 
 # Chargement des outils supplémentaires à l'installation
 
-Comme le montre la capture qui suit la ligne suivante sera 
+![Menu principal : Charger les composants depuis le support.](img016.png "Menu principal : Charger les composants depuis le support.")
+
+Comme le montre la capture précédente la ligne suivante sera 
 sélectionnée pour charger les composants supplémentaires. Le message 
 indique que lors d'une détection interne si des modules s'avèrent 
 nécessaires ils seront automatiquement chargés. La liste proposée 
 ne contient que les composants que le système ne détecte pas mais 
 que l'utilisateur _sait_ être importants pour sa personnalisation.
 
-![](img016.png)
+![Choix de composants supplémentaires non détectés à ce stade par l'installateur.](img017.png "Choix de composants supplémentaires non détectés à ce stade par l'installateur.")
 
 Avant de poursuivre il peut être nécessaire d'insérer des modules 
 autres que le système n'estime pas obligatoire. Par exemple si on 
@@ -210,39 +265,104 @@ machine a très peu de mémoire vive (lowmem) voir si on souhaite
 installer le minimum du minimum pour finir l'installation dans une 
 seconde étape à distance (network-console) ...
 
-![](img017.png)
-
 Après avoir coché ou non certaines cases et aussi coché le bouton 
 \[Continuer\] le chargement automatique des modules cochés 
 
-![](img018.png)
+![Progression du chargement des composants supplémentaires.](img018.png "Progression du chargement des composants supplémentaires.")
+
+Bien ! Nous sommes prêts, modules et pilotes chargés, à attaquer 
+la suite des opérations avec la configuration du réseau.
 
 # La partie réseau
 
 Ici arrive la configuration cruciale pour la suite même si elle ne 
 représente pas la partie la plus importante de cette production.
 
-![](img019.png)
+![Menu principal : détection du matériel réseau.](img019.png "Menu principal : détection du matériel réseau.")
 
-![](img020.png)
+Cette étape commence par la détection du matériel réseau. Si cette 
+dernière est reconnue alors s'affichera la capture suivante pour la 
+configuration.
 
-![](img021.png)
+![Menu principal : configuration du réseau.](img020.png "Menu principal : configuration du réseau.")
 
-![](img022.png)
+Si plusieurs cartes sont disponibles, une page intermédiaire va 
+demander de choisir laquelle sera utilisée. Les cartes réseaux 
+peuvent s'appeler de différentes façons :
 
-![](img023.png)
+- les cartes réseau filaires (ethernet) : les anciens noms sont eth0, eth1, etc... les nouveaux noms sont enpXsY où X et Y sont des chiffres dépendant des cartes, ou enoX, ou d'autres noms encore plus étranges.
+- les cartes réseau sans-fil (wi-fi) : les anciens noms sont wlan0, wlan1, etc... les nouvelles s'appellent aussi wlpXsY où X et Y peuvent changer en fonction de la carte réseau et de l'ordinateur
 
-![](img024.png)
+Au final, lorsque la carte est choisie l'écran suivant va apparaître 
+proposant la configuration automatique du réseau. Dans le cas où 
+il n'y a pas besoin de jouer avec les paramètres, autant laisser le 
+choix "oui".
 
-![](img025.png)
+![Proposition de configuration automatique de la carte sélectionnée.](img021.png "Proposition de configuration automatique de la carte sélectionnée.")
 
-![](img026.png)
+**Attention :** si le choix est "non" alors il faudra savoir quelques 
+éléments de configuration réseau à savoir :
+
+- l'adresse du sous-réseau ethernet (souvent commençant par 192.168) 
+- l'adresse dans ce sous-réseau qu'on souhaite attribuer à la machine 
+- la passerelle de ce sous-réseau pour sortir vers Internet
+- le masque de ce sous-réseau pour communiquer par défaut seulement au sein de ce sous-réseau (souvent 255.255.255.0)
+- l'adresse IP du serveur de résolution des noms de domaines (DNS) qui souvent correspond à celui de la passerelle dans une connexion domestique.
+
+![Indication du temps d'attente avant la détection du réseau.](img022.png "Indication du temps d'attente avant la détection du réseau.")
+
+Ensuite autant laisser les 3 secondes nécessaires au démarrage de 
+la carte afin qu'elle soit parfaitement alimentée avant de détecter 
+les connexions réseaux.
+
+![Configuration de l'IP version 6.](img023.png "Configuration de l'IP version 6.")
+
+D'abord l'IP version 6 sera configurée automatiquement puis se sera 
+le tour de l'IP version 4 d'être configurée automatiquement.
+
+![Configuration de l'IP version 4.](img024.png "Configuration de l'IP version 4.")
+
+Le point suivant correspond à la configuration du nom de la machine 
+cela semble futile pourtant tous les systèmes, même _Windows_ 
+nécessite un nommage de chaque machine afin de leur permettre une 
+communication intraréseau, par défaut _debian_ est proposé mais 
+chacun et chacune peut proposer de qu'il veut dans la limite des 
+caractères acceptés.
+
+![Choix du nom de la machine.](img025.png "Choix du nom de la machine.")
+
+Pour parachever la configuration réseau il est important de préciser 
+si c'est le cas, le nom du domaine dans lequel la machine est ou 
+sera présente, si vous laissez vide aucun soucis (au pire cela se 
+paramètre ultérieurement) puisque chez soi aucun nom particulier 
+n'est donné au réseau (sauf situations exceptionnelles).
+
+![Choix du nom du domaine où réside la machine.](img026.png "Choix du nom du domaine où réside la machine.")
+
+La configuration est finie, il est l'heure de passer à celle du ou 
+des utilisateurs futurs de cette machine.
 
 # Le ou les utilisateurs
 
-![](img027.png)
+Lorsqu'on installe un système _Debian_ par défaut ce qui est le 
+cas dans celle détaillée au sein de ce document, il y a création 
+de deux utilisateurs différents : "root" l'administrateur et 
+un autre pour les usages basiques. La création de root est alors 
+automatisée et ne peut être refusée.
 
-![](img028.png)
+![choix de création d'utilisateurs.](img027.png "choix de création d'utilisateurs.")
+
+En passant par les options avancées il nous est proposé de ne pas 
+créer de root, _de facto_ l'utilisateur standard créé se voyait 
+affublé de droits supplémentaires en faisant partie du groupe _sudo_ 
+lui octroyant pour une grande partie les mêmes possibilités que 
+l'adminisrateur root.
+
+![Mot de passe de root.](img028.png "Mot de passe de root.")
+
+Suite à quoi sera créé le compte root et le mot de passe sera 
+demandé deux fois (notez qu'on peut le faire apparaître pour le 
+vérifier à cet instant précis ça ne sera plus le cas ultérieurement.
 
 ![](img029.png)
 
@@ -256,60 +376,121 @@ représente pas la partie la plus importante de cette production.
 
 # Réglage de l'horloge et du fuseau horaire.
 
-Cette partie va s'avérer importante dans certains cas, pas tant pour l'utilisateur 
-d'un poste de travail classique -- quoi que cela puisse avoir son importance -- 
-mais il ne faut pas oublier que _Debian_ reste dans sa conception et son ADN une 
-distribution orientée serveurs.
+Cette partie va s'avérer importante dans certains cas, pas tant pour 
+l'utilisateur d'un poste de travail classique -- quoi que cela puisse 
+avoir son importance -- mais il ne faut pas oublier que _Debian_ reste 
+dans sa conception et son ADN une distribution orientée serveurs.
 
-Or, afin que tous les serveurs partout dans le monde soient réglés comme il faut 
-les machines fonctionnant sous Linux seul ont comme habitude de régler l'horloge 
-matérielle de l'ordinateur sur le temps universel GMT et d'appliquer un décalage 
-dû au fuseau horaire.
+Or, afin que tous les serveurs partout dans le monde soient réglés 
+comme il faut les machines fonctionnant sous Linux seul ont comme 
+habitude de régler l'horloge matérielle de l'ordinateur sur le temps 
+universel GMT et d'appliquer un décalage dû au fuseau horaire.
 
-![](img034.png)
+![Menu principal : configuration de l'horloge.](img034.png "Menu principal : configuration de l'horloge.")
 
-Une machine fonctionnant sous windows voit son heure matérielle dans le même 
-fuseau horaire que celle du système, pas sous Linux (et sous macOS également).
+Une machine fonctionnant sous windows voit son heure matérielle dans 
+le même fuseau horaire que celle du système, pas sous Linux (et sous 
+macOS également).
 
-D'ailleurs Microsoft (Windows) utilise lui aussi un service de temps pour la même 
-chose mais il est rarement actif par défaut (de mémoire).
+D'ailleurs Microsoft (Windows) utilise lui aussi un service de temps 
+pour la même chose mais il est rarement actif par défaut (de mémoire).
 
-Afin d'assurer le bon réglage des heures les unes par rapport aux autres il est 
-demandé s'il faut utiliser le service NTP[^ntp] pour synchroniser l'horloge du 
-système.
+Afin d'assurer le bon réglage des heures les unes par rapport aux 
+autres il est demandé s'il faut utiliser le service NTP[^ntp] pour 
+synchroniser l'horloge du système.
 
-![](img035.png)
+![Demande d'activation du service NTP](img035.png "Demande d'activation du service NTP")
 
-Par défaut le choix étant "oui" la fenêtre suivante est proposée, elle utilise le 
-serveur faisant tourner le service (côté serveur) pour effectuer les recalages.
+Par défaut le choix étant "oui" la fenêtre suivante est proposée, 
+elle utilise le serveur faisant tourner le service (côté serveur) 
+pour effectuer les recalages.
 
-Sauf si vous connaissez l'adresse exacte d'un serveur de temps, ne pas toucher à ce 
-paramètre est judicieux.
+Sauf si vous connaissez l'adresse exacte d'un serveur de temps, ne 
+pas toucher à ce paramètre est judicieux.
 
-![](img036.png)
+![Configuration de l'adresse du serveur offrant le service NTP](img036.png "Configuration de l'adresse du serveur offrant le service NTP")
 
-Si la connexion s'établit vers le dit serveur, le fuseau horaire le plus proche 
-entre vos réglages linguistiques, l'heure système et l'horloge matérielle sera 
-proposé en plus du temps universel.
+Si la connexion s'établit vers le dit serveur, le fuseau horaire le 
+plus proche entre vos réglages linguistiques, l'heure système et 
+l'horloge matérielle sera proposé en plus du temps universel.
 
-![](img037.png)
+![Sélection du fuseau horaire.](img037.png "Sélection du fuseau horaire.")
 
-Ces réglages sont importants surtout pour la validité des certificats et des 
-signatures cryptographiques utilisées par certains services et ou logiciels. Au 
-moment de la fin de validité d'un tel document ou au début de la validité d'un 
-autre, si l'horloge est mal réglée c'est
+Ces réglages sont importants surtout pour la validité des certificats 
+et des signatures cryptographiques utilisées par certains services et 
+ou logiciels. Au moment de la fin de validité d'un tel document ou au 
+début de la validité d'un autre, si l'horloge est mal réglée c'est
 
 # Préparation du support
 
-![](img038.png)
+![Menu principal : Détection des disques.](img038.png "Menu principal : Détection des disques.")
 
-![](img039.png)
+On va désormais se concentrer sur le support de la future installation 
+*i.e.* le disque dur interne.
 
-![](img040.png)
+Dans ce document j'ai opté pour une installation chiffrée sauf le 
+dossier `boot` qui sera quant à lui laissé à l'extérieur du 
+chiffrement. C'est un choix délibéré de ma part car l'installateur 
+basique ne permet pas mieux comme possibilité nativement, c'est-à-dire 
+sans sortir de lui-même par l'exécution d'un script `bash`.
 
-![](img041.png)
+Dans les méthodes de chiffrement il existe pléthore de possibilités 
+mais je préfère malgré tout l'utilisation d'une configuration 
+relativement simple :
 
-![](img042.png)
+- un dossier `/boot` en clair pour le démarrage
+- le reste du disque chiffré via `luks`.
+	- dans le volume chiffré luks un *logical volume manager* (lvm)
+		- dans ce `lvm` un groupe qui contiendra le système
+			- dans ce groupe `/` *swap* et `/home`
+- pas d'EFI évidemment
+
+La première étape consiste donc à détecter le ou les disques présents 
+au sein du système puisque Linux sait parfaitement gérer un système 
+dispersé sur plusieurs disques.
+
+S'exécute alors l'outil de partitionnement ...
+
+![Menu principal : Partitionnement des disques.](img039.png "Menu principal : Partitionnement des disques.")
+
+... ce qui va nécessiter le chargement des composants utiles pour 
+la gestion du chiffrement et des volumes logiciels...
+
+![Barre de progression de chargement des outils supplémentaires.](img040.png "Barre de progression de chargement des outils supplémentaires.")
+
+... et le chargement de de l'outil graphique ou semi-graphique de 
+partitionnement.
+
+![Barre de progression du chargement des outils de partitionnement.](img041.png "Barre de progression du chargement des outils de partitionnement.")
+
+Plusieurs choix sont offerts.
+
+- si vous n'y connaissez rien ou avez peu confiance en vos capacités, 
+le premier choix "Assisté - utiliser un disque entier" est l'option 
+la plus sûre et aussi la moins fine mai au moins vous aurez 
+l'impression de facilité à l'installatino de la distribution _Debian_.
+- le choix "Assisté - utiliser tout un disque avec LVM" et une option 
+qui se rapproche de ce que je veux mettre en place, mais il manque le 
+chiffrement protecteur que désire mettre en place.
+- Ensuite le choix "Assisté - utiliser un disque avec LVM chiffré" est 
+le choix qui se rapproche le plus de que je souhaite mettre en place. 
+Il manque cependant une finesse dans le partitionnement comme la 
+séparation des partitions utilisateur et racine ainsi qu'un meilleur 
+contrôle du *swap*
+
+Aussi mon choix se portera concrètement sur `Manuel` me laissant 
+plus grande autonomie et liberté dans la configuration.
+
+![Partitionnement : création d'une table de partionnement.](img042.png "Partitionnement : création d'une table de partionnement.")
+
+Dans l'image sur la création d'une table de partionnement comme le 
+disque est totalement neuf et non partitionné en usine, il n'y a 
+aucune table déterminée.
+
+Lorsque je crée une table de partition nouvelle sur un disque deux 
+choix s'offrent à moi sur un disque fonctionnant dans un ordinateur 
+de type PC, soit un partitionnement `msdos` ou `dos` soit un 
+partitionnement `gpt`.
 
 ![](img043.png)
 
@@ -449,21 +630,91 @@ autre, si l'horloge est mal réglée c'est
 
 # Installation du système de base sur la cible
 
+Puisque le disque est partitionné et formaté comme souhaité il est 
+désormais temps de passer à l'installation du squelette du futur 
+sytème opératif. Ce squelette est désigné par le "système de base" 
+dans l'installateur.
+
 ![](img111.png)
+
+Pas grand chose à faire hormis exécuter l'étape d'installation 
+puisque cette structure est parfaitement automatisée et installe 
+les outils nécessaires à l'administration ou aux réparations d'un 
+linux en place. L'utilisateur moyen ou son pendant féminin ne 
+saura peut-être jamais que ces programmes existent.
 
 ![](img112.png)
 
+Une question est posée cependant : quel noyau choisir dans ce 
+système basique ? On pourrait avoir l'idée de dire aucun (mais je 
+n'ai jamais testé), choisir un `linux-image-numéros-architecture` 
+figera le noyau dans cette version malgré les mises à jour, par 
+contre l'utilisation de la ligne `linux-image-architecture` comme 
+sur la capture où on voit le fichier pour l'architecture `amd64` 
+désignant les processeurs 64 bits (Intel, AMD ...) habituels sur 
+PC.
+
 ![](img113.png)
+
+Enfin il est posé la question concernant la liste des pilotes du 
+noyau à installer. Dans le monde _Windows_ ces pilotes sont 
+appelés _drivers_ et permettent de reconnaître du matériel. Sur un 
+appareil fixe qui ne recevra aucun matériel supplémentaire on peut 
+chosir la ligne "image ciblée", mais pour un ordinateur qui pourra 
+recevoir des disques, des imprimantes, des scanners ou d'autres 
+périphériques il est préférable de choisir "image générique" qui 
+installera la totalité des pilotes du noyau disponibles.
 
 ![](img114.png)
 
+Le système "de base étant prêt", désormais il va falloir configurer 
+l'outil en charge d'installer des logiciels supplémentaire connu 
+sous le nom de "getionnaire de paquets".
+
 # Configuration de l'outil de gestion des paquets
 
-![](img115.png)
+L'outil de gestion des paquets est le programme utilisant une des 
+méthodes d'installation des programmes. Linux en connaît quatre 
+qui peuvent plus ou moins rangés en trois modes :
 
-![](img116.png)
+- installation d'un paquet :
+	- par le gestionnaire des paquets (graphique / textuel)
+	- manuellement (graphique / textuel)
+	- via un *Store* comme sur téléphone mobile (graphique)
+- exécution d'un binaire prêt-à-l'emploi (graphique / textuel)
+- compilation des sources et installation manuellement (textuel)
 
-![](img117.png)
+Au moment de l'installation, _Debian_ va proposer de configurer 
+l'outil de gestion des paquets (il n'y a pas de _Store_ dans le 
+style d'un _Apple/Windows/Ubuntu store_) propre à cette distribution 
+et qui se trouve également dans ses distributions filles.
+
+![Menu principal, ligne de la configuration du  gestionnaire de paquets](img115.png "Menu principal, ligne de la configuration du  gestionnaire de paquets")
+
+Dans un premier temps il faut préciser si d'autres supports 
+d'installation sont fournis. Par défaut avec l'image téléchargée 
+ce n'est pas le cas, aussi la réponse "non" est présélectionnée et 
+suffit amplement.
+
+![Analyse d'un nouveau support](img116.png "Analyse d'un nouveau support")
+
+Je profite cependant pour rappeler que si j'ai choisi cette 
+distribution ça n'est pas le fruit du hasard. _Debian_ fait partie 
+des rares distributions entièrement disponible _off line_ et à ce 
+titre en cas de chute mondiale du réseau internet pendant une durée 
+assez longue pour avoir besoin de réinstaller un système opératif, 
+alors il est possible d'avoir besoin des DVD de la distribution 
+complète.
+
+Dans ce cas, _Debian_ offre 4 DVD contenant la plus grande partie 
+des logiciels disponibles et arrivé(e) à cette étape de 
+l'installation il suffira de cocher **oui** et de suivre les 
+étapes qui s'afficheront (principalement insérer les nouveaux DVD 
+dans le lecteur, valider pour que le système les parcourre puis 
+à la fin de la lecture de tous les DVD, remettre le premier pour 
+poursuivre l'installation.
+
+![Mise en place d'un dépôt en réseau ?](img117.png "Mise en place d'un dépôt en réseau ?")
 
 ![](img118.png)
 
@@ -487,28 +738,81 @@ autre, si l'horloge est mal réglée c'est
 
 # Installation des logiciels initiaux
 
+Au moment de l'installation est proposé de directement mettre sur le 
+disque final une série de logiciels prêts à l'emploi afin de permettre 
+à l'utilisateur d'avoir un environnement opérationnel et 
+pré-paramétré par défaut.
+
+Bien que beaucoup d'utilisateurs de *Debian* l'utilisent en mode 
+serveur, l'installateur propose dès le début les plus classiques 
+environnements graphiques et des outils divers tels que les outils 
+bureautiques ou des navigateurs internet par défaut et installables 
+par une simple coche de case.
+
 ![](img128.png)
+
+C'est ce qui est proposé dans la ligne *Choisir et installer des logiciels.*
+
+Une fois ce choix enclenché une phase de mise à jour -- d'où la 
+nécessité de la connexion active -- commence afin de proposer 
+l'installation immédiate de leurs dernières versions disponibles.
 
 ![](img129.png)
 
+L'installateur propose aussi d'aller rechercher les mises à jour 
+de sécurité des logiciels soit déjà installés par l'étape de création 
+du système de base, soit des logiciels qui sont installés à cette 
+étape-ci.
+
 ![](img130.png)
+
+Une phase temporaire de téléchargements s'opère...
 
 ![](img131.png)
 
+... suite à quoi il est demandé si l'on souhaite -- ou non -- 
+participer aux remontées d'expérience et de *bugs* pour aider les 
+programmeurs et / ou mainteneurs du projet dans l'amélioration des 
+paquets logiciels concernés.
+
 ![](img132.png)
 
+Après plusieurs téléchargements et mises à jour récupérées 
+l'utilitaire *tasksel* est téléchargé ... puis commence à s'exécuter.
+
 ![](img133.png)
+
+Cet outil, *tasksel* propose alors de cocher des **meta-paquets** qui 
+sont des paquets de paquets, ou groupes de paquets si cela est plus 
+clair, et dont le but est d'installer des environnements prêts à 
+utiliser avec tout ce qu'il faut pour apprécier un système fonctionnel.
 
 ![](img134.png)
 
 Une fois les cases cochées et la touche Continuer enfoncée c'est le 
 moment où l'installation du système initial et de tous les paquets se fera sans qu'on ai besoin de quoi que ce soit.
 
-Suivant la quantité de données à télécharger, la vitesse de connexion, 
-les caractéristiques techniques (vitesse du processeur, mémoire ...) 
-de la machine, cette étape peut être plus ou moins longue.
-
 ![](img135.png)
+
+Cette étape est la partie la plus longue de toute l'installation 
+puisque dépendant de la quantité de paquets à télécharger suivant 
+les cases du menu précédent choisies mais également du débit de la 
+connexion internet utilisée pour récupérer l'intégralité de ces 
+paquets.
+
+Cette dépendance est principalement effective sur la première partie 
+du processus : celle du téléchargement des logiciels.
+
+Allez faire une promenade, ou préparer un gâteau ça peut être long.
+
+Ne vous fiez pas à la barre de progression : la quantité totale des 
+téléchargements correspond à 1/3 de la barre, le second tiers est 
+l'installation des paquets suite à leur décompression et le dernier 
+tiers est dédié au paramétrage initial de chaque paquet.
+
+Une fois tous les paquets récupérés, ce qui fera la rapidité ou à 
+contrario la lenteur de la progression seront les performances 
+intrinsèques de la machine.
 
 # L'installation du chargeur de démarrage
 
