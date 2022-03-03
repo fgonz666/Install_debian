@@ -358,21 +358,55 @@ affublé de droits supplémentaires en faisant partie du groupe _sudo_
 lui octroyant pour une grande partie les mêmes possibilités que 
 l'adminisrateur root.
 
-![Mot de passe de root.](img028.png "Mot de passe de root.")
+![Protection des mots de passe et autorisation du login de root.](img028.png "Protection des mots de passe et autorisation du login de root.")
+
+À cette étape sera demandé s'il faut protéger les mots de passe en 
+utilisant le fichier `/etc/shadow`[^shadow] et s'il faut autoriser 
+ou pas la connexion du compte root.
+
+Si le compte root est autorisé, la création du compte utilisateur 
+à une étape ultérieure n'inscrira pas cet utilisateur dans le groupe 
+des administrateurs (`sudo`) par contre si le compte root n'est pas 
+autorisé à se connecter alors l'utilisateur sera dans sudo.
+
+![Mot de passe de root.](img029.png "Mot de passe de root.")
 
 Suite à quoi sera créé le compte root et le mot de passe sera 
 demandé deux fois (notez qu'on peut le faire apparaître pour le 
 vérifier à cet instant précis ça ne sera plus le cas ultérieurement.
 
-![](img029.png)
+vous aurez noté la présence d'une case à cocher pour _Afficher le 
+mot de passe en clair_ ce qui est important à cet instant de 
+l'installation surtout quand on ne connaît pas finement la gestion 
+du clavier dans Linux.
 
-![](img030.png)
+![Création de l'utilisateur standard.](img030.png "Création de l'utilisateur standard.")
 
-![](img031.png)
+À cette étape est demandé si un utilisateur standard est nécessaire, 
+cette question apparaît lorsque le compte root a été précédemment 
+été autorisé à se connecter car si ça n'avait pas été le cas, la 
+création du compte utilisateur est obligatoire.
 
-![](img032.png)
+![Création du nom complet.](img031.png "Création du nom complet.")
 
-![](img033.png)
+Suite à cette question, il faut évidemment rentrer le nom complet 
+de l'utilisateur (nom, prénom, ce que vous voulez) ...
+
+![Création du _username_](img032.png "Création du _username_")
+
+... puis le nom d'utilisateur au sens _UNIX_ du terme (pas d'accents, 
+pas d'espaces, etc.), ce nom d'utilisateur s'utilisera principalement 
+dans les terminaux en mode textuel pur ou en mode graphique.
+
+![Mot de passe de l'utilisateur.](img033.png "Mot de passe de l'utilisateur.")
+
+Tout comme pour root, le mot de passe est masqué mais peut être 
+rendu visible par l'activation de la casse idoine.
+
+Le ou les comptes d'utilisateurs du futur système sont donc prêts à 
+être installés le moment venu, il va falloir passer à l'étape 
+suivante de configuration de l'horloge système ce qui revêt une 
+certaine importance traitée au chapitre suivant.
 
 # Réglage de l'horloge et du fuseau horaire.
 
@@ -445,6 +479,9 @@ relativement simple :
 			- dans ce groupe `/` *swap* et `/home`
 - pas d'EFI évidemment
 
+Concernant les variantes pour une machine avec EFI il y a un chapitre 
+spécifique en annexe.
+
 La première étape consiste donc à détecter le ou les disques présents 
 au sein du système puisque Linux sait parfaitement gérer un système 
 dispersé sur plusieurs disques.
@@ -476,7 +513,7 @@ chiffrement protecteur que désire mettre en place.
 le choix qui se rapproche le plus de que je souhaite mettre en place. 
 Il manque cependant une finesse dans le partitionnement comme la 
 séparation des partitions utilisateur et racine ainsi qu'un meilleur 
-contrôle du *swap*
+contrôle du *swap*.
 
 Aussi mon choix se portera concrètement sur `Manuel` me laissant 
 plus grande autonomie et liberté dans la configuration.
@@ -492,141 +529,141 @@ choix s'offrent à moi sur un disque fonctionnant dans un ordinateur
 de type PC, soit un partitionnement `msdos` ou `dos` soit un 
 partitionnement `gpt`.
 
-![](img043.png)
+![43](img043.png)
 
-![](img044.png)
+![44](img044.png)
 
-![](img045.png)
+![45](img045.png)
 
-![](img046.png)
+![46](img046.png)
 
-![](img047.png)
+![47](img047.png)
 
-![](img048.png)
+![48](img048.png)
 
-![](img049.png)
+![49](img049.png)
 
-![](img050.png)
+![50](img050.png)
 
-![](img051.png)
+![51](img051.png)
 
-![](img052.png)
+![52](img052.png)
 
-![](img053.png)
+![53](img053.png)
 
-![](img054.png)
+![54](img054.png)
 
-![](img055.png)
+![55](img055.png)
 
-![](img056.png)
+![56](img056.png)
 
-![](img057.png)
+![57](img057.png)
 
-![](img058.png)
+![58](img058.png)
 
-![](img059.png)
+![59](img059.png)
 
-![](img060.png)
+![60](img060.png)
 
-![](img061.png)
+![61](img061.png)
 
-![](img062.png)
+![62](img062.png)
 
-![](img063.png)
+![63](img063.png)
 
-![](img064.png)
+![64](img064.png)
 
-![](img065.png)
+![65](img065.png)
 
-![](img066.png)
+![66](img066.png)
 
-![](img067.png)
+![67](img067.png)
 
-![](img068.png)
+![68](img068.png)
 
-![](img069.png)
+![69](img069.png)
 
-![](img070.png)
+![70](img070.png)
 
-![](img071.png)
+![71](img071.png)
 
-![](img072.png)
+![72](img072.png)
 
-![](img073.png)
+![73](img073.png)
 
-![](img074.png)
+![74](img074.png)
 
-![](img075.png)
+![75](img075.png)
 
-![](img076.png)
+![76](img076.png)
 
-![](img077.png)
+![77](img077.png)
 
-![](img078.png)
+![78](img078.png)
 
-![](img079.png)
+![79](img079.png)
 
-![](img080.png)
+![80](img080.png)
 
-![](img081.png)
+![81](img081.png)
 
-![](img082.png)
+![Sélection du support devant contenir le gestionnaire de volume logique (lvm).](img082.png "Sélection du support devant contenir le gestionnaire de volume logique (lvm).")
 
-![](img083.png)
+![83](img083.png)
 
-![](img084.png)
+![Création du volume logique totoro.](img084.png "Création du volume logique totoro.")
 
-![](img085.png)
+![85](img085.png)
 
-![](img086.png)
+![86](img086.png)
 
-![](img087.png)
+![87](img087.png)
 
-![](img088.png)
+![88](img088.png)
 
-![](img089.png)
+![Je fixe la taille de la partition de swap.](img089.png "Je fixe la taille de la partition de swap.")
 
-![](img090.png)
+![Récapitulatif avant de commencer le partitionnement.](img090.png "Récapitulatif avant de commencer le partitionnement.")
 
-![](img091.png)
+![Fin de la création des volumes.](img091.png "Fin de la création des volumes.")
 
-![](img092.png)
+![Démarrage du partitionnement.](img092.png "Démarrage du partitionnement.")
 
-![](img093.png)
+![93](img093.png)
 
-![](img094.png)
+![94](img094.png)
 
-![](img095.png)
+![95](img095.png)
 
-![](img096.png)
+![96](img096.png)
 
-![](img097.png)
+![97](img097.png)
 
-![](img098.png)
+![98](img098.png)
 
-![](img099.png)
+![99](img099.png)
 
-![](img100.png)
+![100](img100.png)
 
-![](img101.png)
+![101](img101.png)
 
-![](img102.png)
+![102](img102.png)
 
-![](img103.png)
+![103](img103.png)
 
-![](img104.png)
+![104](img104.png)
 
-![](img105.png)
+![105](img105.png)
 
-![](img106.png)
+![106](img106.png)
 
-![](img107.png)
+![107](img107.png)
 
-![](img108.png)
+![108](img108.png)
 
-![](img109.png)
+![109](img109.png)
 
-![](img110.png)
+![110](img110.png)
 
 # Installation du système de base sur la cible
 
@@ -635,7 +672,7 @@ désormais temps de passer à l'installation du squelette du futur
 sytème opératif. Ce squelette est désigné par le "système de base" 
 dans l'installateur.
 
-![](img111.png)
+![111](img111.png)
 
 Pas grand chose à faire hormis exécuter l'étape d'installation 
 puisque cette structure est parfaitement automatisée et installe 
@@ -643,7 +680,7 @@ les outils nécessaires à l'administration ou aux réparations d'un
 linux en place. L'utilisateur moyen ou son pendant féminin ne 
 saura peut-être jamais que ces programmes existent.
 
-![](img112.png)
+![112](img112.png)
 
 Une question est posée cependant : quel noyau choisir dans ce 
 système basique ? On pourrait avoir l'idée de dire aucun (mais je 
@@ -654,7 +691,7 @@ sur la capture où on voit le fichier pour l'architecture `amd64`
 désignant les processeurs 64 bits (Intel, AMD ...) habituels sur 
 PC.
 
-![](img113.png)
+![113](img113.png)
 
 Enfin il est posé la question concernant la liste des pilotes du 
 noyau à installer. Dans le monde _Windows_ ces pilotes sont 
@@ -665,7 +702,7 @@ recevoir des disques, des imprimantes, des scanners ou d'autres
 périphériques il est préférable de choisir "image générique" qui 
 installera la totalité des pilotes du noyau disponibles.
 
-![](img114.png)
+![114](img114.png)
 
 Le système "de base étant prêt", désormais il va falloir configurer 
 l'outil en charge d'installer des logiciels supplémentaire connu 
@@ -716,25 +753,25 @@ poursuivre l'installation.
 
 ![Mise en place d'un dépôt en réseau ?](img117.png "Mise en place d'un dépôt en réseau ?")
 
-![](img118.png)
+![118](img118.png)
 
-![](img119.png)
+![119](img119.png)
 
-![](img120.png)
+![120](img120.png)
 
-![](img121.png)
+![121](img121.png)
 
-![](img122.png)
+![122](img122.png)
 
-![](img123.png)
+![123](img123.png)
 
-![](img124.png)
+![124](img124.png)
 
-![](img125.png)
+![125](img125.png)
 
-![](img126.png)
+![126](img126.png)
 
-![](img127.png)
+![127](img127.png)
 
 # Installation des logiciels initiaux
 
@@ -749,7 +786,7 @@ environnements graphiques et des outils divers tels que les outils
 bureautiques ou des navigateurs internet par défaut et installables 
 par une simple coche de case.
 
-![](img128.png)
+![128](img128.png)
 
 C'est ce qui est proposé dans la ligne *Choisir et installer des logiciels.*
 
@@ -757,37 +794,37 @@ Une fois ce choix enclenché une phase de mise à jour -- d'où la
 nécessité de la connexion active -- commence afin de proposer 
 l'installation immédiate de leurs dernières versions disponibles.
 
-![](img129.png)
+![129](img129.png)
 
 L'installateur propose aussi d'aller rechercher les mises à jour 
 de sécurité des logiciels soit déjà installés par l'étape de création 
 du système de base, soit des logiciels qui sont installés à cette 
 étape-ci.
 
-![](img130.png)
+![130](img130.png)
 
 Une phase temporaire de téléchargements s'opère...
 
-![](img131.png)
+![131](img131.png)
 
 ... suite à quoi il est demandé si l'on souhaite -- ou non -- 
 participer aux remontées d'expérience et de *bugs* pour aider les 
 programmeurs et / ou mainteneurs du projet dans l'amélioration des 
 paquets logiciels concernés.
 
-![](img132.png)
+![132](img132.png)
 
 Après plusieurs téléchargements et mises à jour récupérées 
 l'utilitaire *tasksel* est téléchargé ... puis commence à s'exécuter.
 
-![](img133.png)
+![133](img133.png)
 
 Cet outil, *tasksel* propose alors de cocher des **meta-paquets** qui 
 sont des paquets de paquets, ou groupes de paquets si cela est plus 
 clair, et dont le but est d'installer des environnements prêts à 
 utiliser avec tout ce qu'il faut pour apprécier un système fonctionnel.
 
-![](img134.png)
+![134](img134.png)
 
 Une fois les cases cochées et la touche Continuer enfoncée c'est le 
 moment où l'installation du système initial et de tous les paquets se fera sans qu'on ai besoin de quoi que ce soit.
@@ -1023,3 +1060,11 @@ système d'exploitation. Ceci est caractéristique des systèmes BIOS. Un
 autre système existe dans les machines en uEFI.
 
 [^ntp]: Network Time Protocole
+
+[^shadow]: Aux premiers temps du système UNIX et donc par essence, 
+Linux le fichier `/etc/passwd` contenait les mots de passes des 
+utilisateurs _en clair_. Évidemment cela posait de sérieux problèmes 
+en cas d'accès au système. Dans l'optique d'une sécurité accrûe, il 
+fût mis en place le fichier `/etc/shadow` qui contient un _hash_ du 
+mot de passe, non plus le mot de passe lui-même, permettant ainsi de 
+sécuriser plus cette authentification.
