@@ -529,27 +529,85 @@ choix s'offrent à moi sur un disque fonctionnant dans un ordinateur
 de type PC, soit un partitionnement `msdos` ou `dos` soit un 
 partitionnement `gpt`.
 
-![43](img043.png)
+![Sélection du disque VBOX HARDDISK pour l'installation.](img043.png "Sélection du disque VBOX HARDDISK pour l'installation.")
 
-![44](img044.png)
+Étant donné que l'installation se fait ici sur une machine virtuelle 
+simulant un ordinateur de type PC avec BIOS (et non uEFI) la table 
+de partition sera de type `msdos`.
 
-![45](img045.png)
+Cela signifie que je pourrai définir jusqu'à 4 partitions primaires 
+et en cas de nécessité de plus, une partition primaire peut être 
+utilisée pour créer jusqu'à une vingtaine de partitions secondaires.
 
-![46](img046.png)
+Le cas d'un système avec EFI sera traité dans un document spécifique.
 
-![47](img047.png)
+![Faut-il créer une table de partition ? Bien sûr !](img044.png "Faut-il créer une table de partition ? Bien sûr !")
 
-![48](img048.png)
+Évidemment le système demande si une nouvelle table de partition doit 
+être créée dans ce disque qui n'en possède aucune -- ce qui n'est pas 
+le cas pour les disques du commerce qui en ont déjà une.
 
-![49](img049.png)
+<!-- ![45](img045.png) doublon inutile -->
 
-![50](img050.png)
+![Choix de la table de partition msdos](img046.png "Choix de la table de partition msdos")
 
-![51](img051.png)
+Évidemment ce sera une table de type `msdos` avec les restrictions 
+idoine à ce type de table de partitionnement.
 
-![52](img052.png)
+Le résultat se voit à l'écran suivant : un espace libre apparaît 
+désormais dans la ligne placée sous celle désignant le disque, il 
+va falloir désormais créer les partitions.
 
-![53](img053.png)
+![Enfin de l'espace libre.](img047.png "Enfin de l'espace libre.")
+
+En double cliquant sur l'espace libre -- ou en validant avec la 
+touche entrée -- on arrive alors à cette nouvelle fenêtre qui nous
+propose trois choix -- d'autre options serient possibles si des 
+partitions préexistaient.
+
+![Créer une nouvelle partition, simple non ?](img048.png "Créer une nouvelle partition, simple non ?")
+
+Il m'est bien sûr demandé la taille de cette partition, je peux 
+saisir ce que je veux en respectant quelques règles élémentaires :
+
+* le séparateur décimal est le point, à l'anglosaxone,
+* indiquer la valeur en GB (Gigaoctets/GibaBytes), MB, kB ...
+
+![Partition de 0,5 Go](img049.png "Partition de 0,5 Go")
+
+La première partition crée est de 512 Mo (en GB : 0,5) qui sera le 
+futur `/boot`, l'installateur refusera d'avoir ce boot dans la 
+partition chiffrée, il est donc créé ailleurs.
+
+![Élémentairement primaire !](img050.png "Élémentairement primaire !")
+
+Comme c'est la première partition créée et qu'elle devra être 
+bootable -- démarrable -- alors elle est nécessairement primaire.
+
+Comme le permet le partitionnement BIOS je pourrai installer jusqu'à 
+4 partitions primaires ou 3 primaires + une vingtaine de secondaires 
+ce qui est la plupart du temps largement suffisant.
+
+Notez que windows (ancien) utilisait à l'époque une seule partition 
+primaire, les autres devant _de facto_ être secondaires.
+
+![La primaire au début, logique non ?](img051.png "La primaire au début, logique non ?")
+
+Comme je souhaite que cette partition soit de plus démarrable et que 
+le disque est en DOS, alors il est important que la partition soit 
+placée au début du disque.
+
+![Pas bootable](img052.png "Pas bootable")
+
+La première change à modifier pour cette partition afin de la rendre 
+démarrable est de changer le _drapeau_ ou `Indicateur d'armorçage` 
+de _absent_ à _présent_.
+
+![Bootable](img053.png "Bootable")
+
+Dans les réglages qui sont aussi modifiés il y a le choix du type de 
+système de fichier dans Utiliser comme, par défaut le type de 
+fichiers journalisé le plus répandu est `ext4`.
 
 ![54](img054.png)
 
@@ -575,33 +633,33 @@ partitionnement `gpt`.
 
 ![65](img065.png)
 
-![66](img066.png)
+![](img066.png)
 
-![67](img067.png)
+![](img067.png)
 
-![68](img068.png)
+![](img068.png)
 
-![69](img069.png)
+![](img069.png)
 
 ![70](img070.png)
 
-![71](img071.png)
+![](img071.png)
 
-![72](img072.png)
+![](img072.png)
 
-![73](img073.png)
+![](img073.png)
 
-![74](img074.png)
+![](img074.png)
 
 ![75](img075.png)
 
-![76](img076.png)
+![](img076.png)
 
-![77](img077.png)
+![](img077.png)
 
-![78](img078.png)
+![](img078.png)
 
-![79](img079.png)
+![](img079.png)
 
 ![80](img080.png)
 
