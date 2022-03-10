@@ -609,51 +609,123 @@ Dans les réglages qui sont aussi modifiés il y a le choix du type de
 système de fichier dans Utiliser comme, par défaut le type de 
 fichiers journalisé le plus répandu est `ext4`.
 
-![54](img054.png)
+![Fin du partitionnement de cette partition](img054.png)
 
-![55](img055.png)
+Une fois les réglages effectués, la partition en question est prête 
+donc on peut en finir avec elle et passer à la suite.
 
-![56](img056.png)
+![Faut-il inscrire les changements ?](img055.png)
 
-![57](img057.png)
+Cela revient à inscrire dans la table des partitions l'existence de 
+cette nouvelle partition.
 
-![58](img058.png)
+![La racine est créée ! Mais on verra ensuite que c'est une erreur !](img056.png)
 
-![59](img059.png)
+Ce qui se voit tout de suite dans la fenêtre. 
+Attaque du gros morceau qui suit, dans l'espace libre va être créée 
+une nouvelle partition ...
 
-![60](img060.png)
+![création d'une nouvelle partition](img057.png)
 
-![61](img061.png)
+... qui va occuper tout le reste de l'espace ...
 
-![62](img062.png)
+![qui occupe tout le reste du disque](img058.png)
 
-![63](img063.png)
+... de type primaire.
 
-![64](img064.png)
+![Primaire !](img059.png)
 
-![65](img065.png)
+Par défaut cette partition est présentée par le système comme étant 
+de type `ext4` mais évidemment ce qui est recherché est autre par 
+la création d'une partition _chiffrée_
 
-![](img066.png)
+![type : partition chiffrée, non cryptée](img060.png)
 
-![](img067.png)
+Du coup l'écran suivant permettra de paramétrer ce chiffrement :
 
-![](img068.png)
+![partition chiffrée](img061.png)
 
-![](img069.png)
+![activée !](img062.png)
 
-![70](img070.png)
 
-![](img071.png)
+l'une des premières choses, vu que le disque est propre, pas besoin 
+de perdre des heures à effacer le contenu du disque avant de créer 
+la partition chiffrée, aussi je passe de oui à non le paramètre 
+`Effacer les données :`
 
-![](img072.png)
+![Non à l'effacement.](img063.png)
 
-![](img073.png)
+De même je garde le chiffrement **aes** même si trois autres sont 
+généralement proposés en plus, et je descend la clé de 256 bits à 
+128 bits ce qui suffit globalement à protéger le contenu pour un 
+usage un peu sécurisé.
 
-![](img074.png)
+![128 bits ça suffit ici](img064.png)
 
-![75](img075.png)
+Ne pensez pas que votre disque résistera à la visite des membres de 
+la police un jour venu si vous êtes _vraiment_ la cible d'opérations 
+de grande envergure, mais, en cas de vol de votre ordinateur, même 
+un très bon informaticien qui n'aurait pas accès à votre mot de 
+passe n'aura pas accès non plus au contenu du disque.
 
-![](img076.png)
+Puis on en a fini avec cette partition ...
+
+![fin du partitionnement](img065.png)
+
+Le retour à l'écran de partitionnement montre la partition 2 de 
+type chiffrée et inactive, ce qui va être rectifié dans l'étape à 
+suivre.
+
+![On écrit les infos sur le disque ...](img067.png)
+
+Après avoir changé le _non_ en _oui_ dans la demande d'écriture des 
+informations sur le disque.
+
+S'en suivra la phase de création des volumes chiffrés.
+
+![... et on réécrit le disque !](img068.png)
+
+![choix de la partition à chiffrer](img069.png)
+
+Il faut bien sûr choisir la partition chiffrée à configurer...
+
+![et c'est choisi](img070.png)
+
+et bien sûr on finit par terminer, ce qui va déclencher l'écran 
+suivant où sera demandé le mot de passe pour déchiffrer la partition 
+créée :
+
+![71](img071.png)
+
+puis une phase de démarrage des nouveaux outils (en l'occurrence 
+ils s'agit plus que probablement de `dm-crypt` et / ou `cryptsetup`.
+
+![progression de l'analyse du disque](img072.png)
+
+Cela affichera désormais une nouvelle ligne reprenant le nom de la 
+partition du disque choisi `sda2` -> `sda2_crypt` et une nouvelle 
+série de lignes dans le résumé de l'installateur.
+
+![deux nouvelles lignes !](img073.png)
+
+```
+Volume chiffré (sda2_crypt) - 21.0 GB Linux device-mapper (crypt)
+  >   n°1               21.0 GB     f   ext4
+```
+et une modification de la ligne plus bas :
+
+` >   n°2  primaire   21.0 GB      K    (sda2_crypt)`
+
+Comme par défaut ce système est en `ext4` on va modifier son type 
+immédiatement pour le passer en _logical volume manager_ ou _lvm_
+
+![passage de l'ext4 ...](img074.png)
+
+![... vers le volume physique LVM](img075.png)
+
+et bien évidemment il faut ensuite finir de paramétrer ce _lvm_.
+
+![fin de la configuration du lvm](img076.png)
 
 ![](img077.png)
 
@@ -811,25 +883,197 @@ poursuivre l'installation.
 
 ![Mise en place d'un dépôt en réseau ?](img117.png "Mise en place d'un dépôt en réseau ?")
 
-![118](img118.png)
+C'est alors que l'installateur va demander le type de connexion à 
+établir avec le serveur de paquet, par défaut il s'agit d'une 
+connexion `http` ce qui suffit sachant que les signatures des 
+paquets sont déjà récupérées ailleurs, la comparaison des hashs 
+entre le paquet téléchargé et la signature attendue permettra de 
+savoir si le paquet est corrompu ou non.
 
-![119](img119.png)
+![Choix du type de connexion au serveur de paquets](img118.png)
 
-![120](img120.png)
+Notez que l'autre choix, `https`, nécessitera l'installation du 
+paquet `apt-https-transport` quant à celui en `ftp` j'avoue ne 
+jamais l'avoir utilisé.
 
-![121](img121.png)
+![Choix de la région de localisation du dépôt.](img119.png)
 
-![122](img122.png)
+Une fois le type de connexion au dépôt choisi, il est bien temps de 
+configurer la région du monde où sélectionner le serveur qui 
+stocke déjà les paquets, évidemment étant en France, je choisis le 
+dépôt français, espérant ainsi limiter l'impact de la connexion.
 
-![123](img123.png)
+Ce choix est déjà effectué par défaut d'ailleurs, se basant sur la 
+localisation linguistique déclarée auparavant.
 
-![124](img124.png)
+![Choix précis du serveur](img120.png)
 
-![125](img125.png)
+Ensuite vient la sélection plus précise du serveur, l'image ci-avant 
+montre le choix _par défaut_ que je ne change pas.
 
-![126](img126.png)
+![Configuration du proxy](img121.png)
 
-![127](img127.png)
+Dans certains cas, typiquement dans un réseau d'entreprise ou dans 
+un réseau administratif, les connexions à internet sont soumises à 
+identification et authentification de l'utilisateur, il s'agit alors 
+de configurer le proxy correspondant.
+
+Le proxy étant le serveur qui gère le transit des pages internet par 
+le protocole `http` et/ ou `https` voire aussi les autres. Maintenant 
+passons au choix des familles paquets.
+
+Ceci reviendra à configurer le fichier `/etc/apt/sources.list`.
+
+![Activation des paquets non-libres.](img122.png)
+
+Toujours dans la configuration de l'outil de gestion des paquets, 
+il est temps de savoir si vous ne voulez faire apparaître que les 
+paquets libres -- par défaut _debian_ ne propose que les paquets 
+libres -- ou bien si vous désirez accéder à des paquets non-libres.
+
+Typiquement le fichier qui va être écrit est `/etc/apt/source.list` 
+ou bien, dans les debian plus modernes, une série de fichiers situés 
+dans le dossier `/etc/apt/sources.list.d`.
+
+Plusieurs configurations sont alors possibles, et, vu le choix de 
+la capture d'écran précédente, une image n'apparaîtra pas, aussi 
+vais-je vous expliquer les différence.
+
+**Si on répond non à l'utilisation des logiciels non-libres** alors 
+une nouvelle fenêtre va s'ouvrir demandant si on souhaite utiliser 
+des logiciels avec des bibliothèques non-libres.
+
+**si on répond également non à l'utilisation de logiciels libres utilisant des bibliothèques non-libres** 
+dans ce cas l'installation passera à la configuration des sources 
+dans le fichier de gestion des paquets.
+
+**Si on répond oui à l'utilisation des logiciels non-libres** alors 
+la question suivante passera directement au choix faisant apparaître 
+les sources dans le fichier de configuration des paquets.
+
+![Activation des sources ?](img123.png)
+
+Ici les sources sont par défaut proposées actives, mais, comme je ne 
+pense pas développer des programmes depuis Linux nécessitant les 
+sources des paquets, alors je répond bien évidemment non.
+
+![Je n'en ai pas besoin !](img124.png)
+
+Et pendant que les téléchargements de fichiers vont continuer, je 
+prends le temps d'expliquer les différences.
+
+![téléchargement des fichiers contenant la liste des paquets et de leurs versions](img125.png)
+
+Je vais supposer l'hypothèse d'un fichier unique sis en `/etc/apt` 
+qui sera juste le `source.list` unique. La distribution debian 
+correspondante étant _bullseye_ à savoir la version 11.x 
+actuellement stable.
+
+Voici la version si seuls les paquets libres et les sources sont 
+actives :
+
+```bash
+deb http://deb.debian.org/debian bullseye main
+deb-src http://deb.debian.org/debian bullseye main
+
+deb http://deb.debian.org/debian-security/ bullseye-security main
+deb-src http://deb.debian.org/debian-security/ bullseye-security main
+
+deb http://deb.debian.org/debian bullseye-updates main
+deb-src http://deb.debian.org/debian bullseye-updates main
+```
+
+Voici la version si seuls les paquets libres sont actifs et les 
+sources sont désactivées :
+
+```bash
+deb http://deb.debian.org/debian bullseye main
+# deb-src http://deb.debian.org/debian bullseye main
+
+deb http://deb.debian.org/debian-security/ bullseye-security main
+# deb-src http://deb.debian.org/debian-security/ bullseye-security main
+
+deb http://deb.debian.org/debian bullseye-updates main
+# deb-src http://deb.debian.org/debian bullseye-updates main
+```
+
+Voici la version du fichier avec les paquets libres activés mais 
+aucune source activée :
+
+```bash
+deb http://deb.debian.org/debian bullseye main
+
+deb http://deb.debian.org/debian-security/ bullseye-security main
+
+deb http://deb.debian.org/debian bullseye-updates main
+```
+
+Voici la version du fichier sans sources, avec paquets libres et 
+aussi bibliothèques non-libres (contrib) :
+
+```bash
+deb http://deb.debian.org/debian bullseye main contrib
+
+deb http://deb.debian.org/debian-security/ bullseye-security main contrib
+
+deb http://deb.debian.org/debian bullseye-updates main contrib
+```
+et enfin voici la version du fichier sans sources, avec paquets 
+libres, non-libres et donc par défaut les bibliothèques non-libres 
+incluses :
+
+```bash
+deb http://deb.debian.org/debian bullseye main contrib non-free
+
+deb http://deb.debian.org/debian-security/ bullseye-security main contrib non-free
+
+deb http://deb.debian.org/debian bullseye-updates main contrib non-free
+```
+
+![Activation des backports](img126.png)
+
+L'étape suivante -- celle de la capture -- demande si l'utilisateur 
+désire activer les _backports_, c'est-à-dire les logiciels 
+rétro-portés de la future version -- en l'occurrence debian 12 
+_bookworm_ -- mais qui sont transposables car compatibles en l'état 
+avec la version actuelle.
+
+À titre personnel j'aime beaucoup avoir les backports activés car 
+cela donne au système une grande stabilité tout en ayant des 
+versions logicielles assez récentes, surtout au bout de 2 ou 3 ans 
+de version stable.
+
+![Récupération des backports si activé](img127.png)
+
+Dans le cas de l'activation de ce dépôt spécifique, une série de 
+fichiers sera téléchargés.
+
+**Notez que** pour installer un logiciel depuis ce dépôt on peut soit 
+éditer le fichier `/etc/apt/apt.conf` ou l'un des fichiers dans le fichier `/etc/apt/apt.conf.d/99debian-backports` (au besoin le créer) 
+puis ajouter :
+
+```bash
+Package: *
+Pin: release a=stretch-backports
+Pin-Priority: 900
+```
+source : <https://wiki.debian.org/AptConfiguration>
+
+Plus la priorité est élevée, plus ce dépôt sera préféré.
+
+Si on désire ne pas toucher au système de façon permanente, il est 
+possible de procéder à une mise à jour en forçant le choix du dépôt 
+par l'ajout de l'option `-t debian-backports` par exemple lors d'une 
+installation ou d'une mise à jour :
+
+```bash
+apt update
+apt -t bullseye-backports upgrade
+```
+
+forcera l'installation des paquets depuis bullseye-backports si ce 
+dépôt est évidemment présent dans `/etc/apt/sources.list` ou dans 
+un fichier présent dans `/etc/apt/sources.list.d/`.
 
 # Installation des logiciels initiaux
 

@@ -11,6 +11,7 @@
 	}
 	\urlstyle{same}
 \usepackage{float}
+	\floatplacement{figure}{H}
 \setlength{\parskip}{0.5em}
 \renewcommand{\baselinestretch}{}
 \usepackage[Lenny]{fncychap}
