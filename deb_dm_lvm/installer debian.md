@@ -727,59 +727,238 @@ et bien évidemment il faut ensuite finir de paramétrer ce _lvm_.
 
 ![fin de la configuration du lvm](img076.png)
 
-![](img077.png)
+![Modification de la ligne sur sda2_crypt et choix suivant.](img077.png)
 
-![](img078.png)
+Avec la création de ce _lvm_ il y a une modification de la ligne 
+apparue précédemment lors de la création du volume chiffré : 
 
-![](img079.png)
+```
+Volume chiffré (sda2_crypt) - 21.0 GB Linux device-mapper (crypt)
+  >   n°1               21.0 GB     f   lvm
+```
+La fin de ligne passe de `ext4` à `lvm` indiquant que la partition 
+chiffrée `sda2_crypt` est désormais prête à être formatée non comme 
+une partition standard mais comme un volume spécifique appelé 
+_gestion logique des volumes_.
 
-![80](img080.png)
+La capture ci-avant montre aussi quelle ligne sélectionner ensuite 
+dans le but de poursuivre l'installation.
 
-![81](img081.png)
+![Écriture des modifications ext4 -> lvm](img078.png)
+
+Évidemment, la première étape consiste à appliquer la modification 
+du partitionnement, à savoir le passage de _ext4_ à _lvm_ pour la 
+partition `sda2_crypt` comme le montre la capture précédente.
+
+S'en suit, capture suivante, une première fenêtre indiquant l'état 
+de la configuration du _lvm_ : on vient de paramétrer les partitions 
+pour que soit créé un _lvm_, il est donc pour l'instant _libre_.
+
+![Premier écran de la gestion du lvm](img079.png)
+
+Naturellement, l'installateur propose de créer _ab initio_ un groupe 
+de volume comme ligne préselectionnée dans le but de montrer la voie 
+et de faire gagner du temps.
+
+Comme son nom l'indique, un groupe de volume va grouper plusieurs 
+volumes logiques créés au sein du même _lvm_.
+
+![Je m'appelle totoro.](img080.png)
+
+Comme cette installation ne se veut pas pérenne et sert exclusivement 
+d'exemple didactique, je décide d'appeler le groupe de volume par le 
+premier mot venant à mon esprit à ce moment-là : totoro !
+
+Notez qu'il est intéressant de comprendre qu'un _lvm_ peut contenir 
+plusieurs disques ou plusieurs partitions venant de un ou plusieurs 
+disques, ce qui est pratique car le _manager_ se chargera de gérer 
+la localisation des fichiers au moment de leur écriture ou de leurs 
+modifications.
+
+![Où se trouve totoro ?](img081.png)
+
+Évidemment il faut préciser au _lvm_ où se trouvera ce volume logique 
+totoro vu que le _lvm_ peut gérer plusieurs disques et/ou partitions 
+au sein de la même entité.
+
+Dans cette installation, il se trouve _de facto_ dans `sda2_crypt` 
+puisque nous n'avons qu'un seul disque, avec une seule partition 
+servant de support au _lvm_.
 
 ![Sélection du support devant contenir le gestionnaire de volume logique (lvm).](img082.png "Sélection du support devant contenir le gestionnaire de volume logique (lvm).")
 
-![83](img083.png)
+![Retour au menu, légèrement modifié.](img083.png)
+
+Dès lors, le menu résumé s'étoffe : non seulement la configuration 
+change puisque désormais nous avons ``1'' à la fin de la ligne 
+**Groupe de volumes:** indiquant l'existence du groupe de volume.
+
+**Autre modification :** La ligne **Volumes physiques libres :** 
+passe à zéro puisque le volume logique commence à être utilisé, et 
+la ligne **Volumes physiques utilisés :** passe quant à elle à 1.
+
+Autres modifications dans les choix des actions, plusieurs lignes 
+viennent d'apparaître, celle qui nous intéresse par la suite est 
+celle invitant à **créer un volume logique**. 
 
 ![Création du volume logique totoro.](img084.png "Création du volume logique totoro.")
 
-![85](img085.png)
+Comme le _lvm_ ne sait pas où créer ce volume logique, il suffit de 
+le lui indiquer :
 
-![86](img086.png)
+![Je vais créer un volume dans totoro (le pauvre).](img085.png)
 
-![87](img087.png)
+Chaque volume logique doit avoir un nom qui lui est propre, et je 
+vous recommande même qu'il soit unique dans un premier temps.
 
-![88](img088.png)
+Ici le premier que je crée sera le swap (on peut créer les volumes 
+dans l'ordre qu'on veut, cela n'a aucune importance.
 
-![Je fixe la taille de la partition de swap.](img089.png "Je fixe la taille de la partition de swap.")
+![swap](img087.png)
 
-![Récapitulatif avant de commencer le partitionnement.](img090.png "Récapitulatif avant de commencer le partitionnement.")
+Puis je fixe sa taille -- ce qui est un choix délibéré, d'autres 
+options permettent de le rendre plus dynamique, je vous laisse 
+chercher cela par vous-même.
+
+![swap de 4 Gio = 4096 Mo](img088.png)
+
+Puis l'installateur va me refaire revenir au menu de création des 
+volumes logiques, quelques captures prises au passage ...
+
+![Je crée la racine](img086.png)
+
+et encore d'autres comme le volume _racine_ ou encore celui appelé 
+_maison_ ...
+
+![Je fixe la taille de la partition racine.](img089.png)
+
+On peux fixer la taille par "k", "M" ou encore "G". Une fois tous 
+les volumes créés un récapitulatif sera affiche après avoir choisi 
+de finir la configuration du _lvm_.
+
+Attention cependant 8G = 8 milliards d'octets, ce qui est différent 
+de 8Gi = $8 \times 2^30$ octets !
+
+Pour ma part, j'ai décidé de mettre 3 partitions dans le LVM :
+
+- une partition de 8 Go pour la racine
+- une partition de 4 Gio pour le swap (la ram ne fait que 2 Gio)
+- une partition du reste pour la maison
+
+pour choisir le reste de l'espace restant il suffit de laisser la 
+quantité affichée au moment de la création du volume.
+
+Si vous voulez savoir où vous en êtes, il suffit de choisir 
+d'afficher les détails de configuration.
+
+![Récapitulatif avant de commencer le partitionnement.](img090.png)
+
+Puis d'aller sur "Terminer" pour que la configuration soit appliquée 
+au disque.
 
 ![Fin de la création des volumes.](img091.png "Fin de la création des volumes.")
 
-![Démarrage du partitionnement.](img092.png "Démarrage du partitionnement.")
+Toutes ces opérations pourraient se faire en ligne de commande, 
+d'ailleurs en installant une distribution _archlinux_ c'est ce qui 
+doit être fait, voilà les commandes que cela donnerait :
 
-![93](img093.png)
+```bash
+pvcreate /dev/mapper/sda2_crypt
+vgcreate totoro /dev/mapper/sda2_crypt
+lvcreate totoro -L 4096M -n swap
+lvcreate totoro -L 8G -n racine
+lvcreate totoro -l +100%FREE -n maison
+```
 
-![94](img094.png)
+l'option `-l +100%FREE` indique au système que la valeur de taille 
+sera relative (l minuscule) et le paramètre indique l'utilisation de 
+la totalité de l'espace libre restant dans le groupe de volume.
 
-![95](img095.png)
+l'option `-L` sert à créer une taille fixe définie avec le paramètre 
+qui suivra.
 
-![96](img096.png)
+l'option `-n` sert à nommer ce volume.
 
-![97](img097.png)
+Dès lors, les volumes sont accessibles de deux façons différentes :
 
-![98](img098.png)
+```bash
+/dev/totoro/racine
+/dev/totoro/swap
+/dev/totoro/maison
+```
 
-![99](img099.png)
+ou bien :
 
-![100](img100.png)
+```bash
+/dev/mapper/totoro-racine
+/dev/mapper/totoro-swap
+/dev/mapper/totoro-maison
+```
 
-![101](img101.png)
+On revient ensuite à l'outil de partitionnement.
 
-![102](img102.png)
+![Redémarrage du partitionnement.](img092.png)
 
-![103](img103.png)
+Plein de nouvelles lignes arrivent désormais, j'ai volontairement 
+centré la fenêtre sur ces nouvelles lignes, ce qui a caché les autres 
+placées plus bas dans la fenêtre mais accessibles grâce à l'ascenseur 
+à droite de la fenêtre.
+
+![De nouvelles lignes sont apparues !](img093.png)
+
+Il est donc nécessaire de repasser sur chacune de ces nouvelles 
+lignes qui ne sont en rien configurées pour l'heure afin de leur 
+attribuer un formatage et un point de montage dans le système futur.
+
+Il faudra donc passer par les différentes étapes -- je ne commente 
+pas pour l'instant dans cette première version les quelques captures 
+suivantes, les commentaires des images étant explicites.
+
+D'abord je décide de configurer le _swap_.
+
+![On change ce paramètre car la partition va être utilisée.](img094.png)
+
+![Le type de ce volume sera du swap](img095.png)
+
+![La configuration du swap est finie.](img096.png)
+
+![Le swap est configuré, la ligne correspondante est modifiée, next !](img097.png)
+
+Maintenant ça sera le tour de la racine, _root_ en anglais, symbolisé 
+par le point de montage `/` dans un système UNIX/Linux.
+
+![La racine sera formatée au type ext4.](img098.png)
+
+Puis il faut lui préciser le **point de montage** ...
+
+![le volume racine sera monté dans `/` (la racine!)](img099.png)
+
+C'est fini pour la racine. Prochaine étape, le volume où seront 
+les données des utilisateurs : `/home` d'où le choix du nom de volume 
+_maison_ pour le désigner.
+
+![Choix du volume qui va accueillir le `/home`](img100.png)
+
+Je vous zappe un des écrans, on passe directement aux réglages :
+
+![`/home` est configuré au format ext4.](img101.png)
+
+Retour à l'écran de formatage, cette fois-ci la capture est centrée 
+afin de faire apparaître toutes les partitions.
+
+![Tout est prêt pour être formaté !](img102.png)
+
+Comme vous le voyez, une multitude de lignes sont apparues depuis le 
+début de la configuration, mais, allez-vous être plus attentif ou 
+attentive que je ne l'ai été lors de cette installation, en effet 
+ai-je commis une erreur ?
+
+Oui ? Non ? Je clique sur la dernière ligne pour terminer la phase 
+d'installation ...
+
+![On y va !](img103.png)
+
+... ah ben ... il y avait un problème !
 
 ![boulette !](img104.png)
 
@@ -792,9 +971,14 @@ vigilance je n'ai pas noté cela.
 L'installateur a repéré mon erreur. Il me le signale par le message 
 de cette boite de dialogue.
 
-![105](img105.png)
+![correction du point de montage de `/dev/sda1`](img105.png)
 
-![106](img106.png)
+Je modifie donc le point de montage de `/dev/sda1` pour qu'il soit 
+bien sur `/boot` et non sur `/` comme tout à l'heure...
+
+![Erreur corrigée !](img106.png)
+
+... et c'est parti !
 
 ![Terminer le partitionnement et appliquer les changements](img107.png)
 
