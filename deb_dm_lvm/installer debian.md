@@ -781,19 +781,43 @@ et bien évidemment il faut ensuite finir de paramétrer ce _lvm_.
 
 ![103](img103.png)
 
-![104](img104.png)
+![boulette !](img104.png)
+
+Oups j'ai fait une boulette ! La précipitation lors de la première 
+phase d'installation fait que la première partition `/dev/sda1` qui 
+aurait naturellement dû être associée au point de mountage `/boot` 
+a été automatiquement associée à la racine `/` et par manque de 
+vigilance je n'ai pas noté cela.
+
+L'installateur a repéré mon erreur. Il me le signale par le message 
+de cette boite de dialogue.
 
 ![105](img105.png)
 
 ![106](img106.png)
 
-![107](img107.png)
+![Terminer le partitionnement et appliquer les changements](img107.png)
 
-![108](img108.png)
+La configuration des différents lecteurs, la correction du bug 
+introduit et surtout le mountage et les choix opérés sur le disque 
+sont désormais finis, il est temps de passer à l'étape suivante.
 
-![109](img109.png)
+![Fenêtre de confirmation totale de tous les réglages](img108.png)
 
-![110](img110.png)
+Avant de procéder aux modifications, il est demandé de vérifier 
+dans cette fenêtre que les choix saisis, les partitions créées et 
+tous les volumes spécifiques sont prêts, par défaut le choix est 
+non évidemment, ce qui évite qu'en cas d'appui malencontreux la 
+procédure continue...
+
+![Fenêtre de confirmation totale de tous les réglages : OUI !](img109.png)
+
+... mais étant sûr du choix, c'est l'heure de procéder !
+
+![Barre progression création partitions](img110.png)
+
+Le disque est prêt. Il faut désormais installer le squelette du 
+futur système avec le _sytème de base_.
 
 # Installation du système de base sur la cible
 

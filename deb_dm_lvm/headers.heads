@@ -1,3 +1,4 @@
+
 %\usepackage[margin=30mm, a4pape]{geometry}
 \usepackage[fontsize=11pt]{fontsize}
 \usepackage{palatino}
@@ -15,3 +16,5 @@
 \setlength{\parskip}{0.5em}
 \renewcommand{\baselinestretch}{}
 \usepackage[Lenny]{fncychap}
+%%% supposing graphicx package installed, defining with of all images
+\setkeys{Gin}{width=0.7071\textwidth}
