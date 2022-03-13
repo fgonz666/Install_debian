@@ -18,3 +18,4 @@
 \usepackage[Lenny]{fncychap}
 %%% supposing graphicx package installed, defining with of all images
 \setkeys{Gin}{width=0.7071\textwidth}
+\usepackage[all, defaultlines=3]{nowidow}
